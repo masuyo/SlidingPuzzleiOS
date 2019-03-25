@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     var rect: UIView!
+    var blocks = [UIView]()
+    var numberOfBlocks = 4
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,19 @@ class ViewController: UIViewController {
         let touch = UITapGestureRecognizer(target: self, action: #selector (self.tap))
         touch.numberOfTapsRequired = 2
         rect.addGestureRecognizer(touch)
+        
+        self.generateBlocks()
+    }
+    
+    func generateBlocks() {
+        for n in 1...numberOfBlocks {
+            let block = UIView(frame: CGRect(x: n*50, y: n*50, width: 50, height: 50))
+            block.backgroundColor = UIColor.green
+            self.view.addSubview(block)
+            let pan = UIPanGestureRecognizer(target: self, action: #selector (self.pan))
+            block.addGestureRecognizer(pan)
+            self.blocks.append(block)
+        }
     }
     
     @objc func tap(sender: UITapGestureRecognizer) {
@@ -40,7 +55,8 @@ class ViewController: UIViewController {
         case .ended:
             print("end")
         case .changed:
-            self.rect.center = sender.location(ofTouch: 0, in: self.view)
+            let point = sender.location(ofTouch: 0, in: self.view)
+            sender.view?.center = point
         default:
             print("hello")
         }
