@@ -23,6 +23,14 @@ class ViewController: UIViewController {
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector (self.pan))
         rect.addGestureRecognizer(pan)
+        
+        let touch = UITapGestureRecognizer(target: self, action: #selector (self.tap))
+        touch.numberOfTapsRequired = 2
+        rect.addGestureRecognizer(touch)
+    }
+    
+    @objc func tap(sender: UITapGestureRecognizer) {
+        print("double tap")
     }
     
     @objc func pan(sender: UIPanGestureRecognizer) {
