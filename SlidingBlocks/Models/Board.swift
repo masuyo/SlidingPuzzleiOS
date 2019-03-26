@@ -21,5 +21,27 @@ class Board {
     
     func loadMap(level:Int) {
         
+        let levelKey = "Level " + String(level)
+        print(levelKey)
+
+        let levelString: String = UserDefaults.standard.object(forKey: levelKey) as! String
+        let blocksString: [String] = self.splitIntoBlocks(levelString: levelString)
+        for blockString in blocksString {
+            let block: Block = self.splitIntoBlock(blockString: blockString)
+            self.map.append(block)
+        }
+    }
+    
+    private func splitIntoBlocks(levelString: String) -> [String] {
+        
+        let splitLevelString: [String]  = levelString.components(separatedBy: ",")
+        return splitLevelString
+    }
+    
+    private func splitIntoBlock(blockString: String) -> Block {
+        var blockSplit: [String] = blockString.components(separatedBy: " ")
+        let block: Block = Block(coordinateX: Int(blockSplit[0])!, coordinateY: Int(blockSplit[1])!, size: Int(blockSplit[2])!, vertical: Bool(blockSplit[3])!)
+        print(blockSplit)
+        return block
     }
 }
