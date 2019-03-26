@@ -10,4 +10,14 @@ import Foundation
 
 class Board {
     
+    var map = [Block]()
+    
+    init(level:Int) {
+        
+        self.loadMap(level: level)
+    }
+    
+    func loadMap(level:Int) {
+        
+    }
 }
