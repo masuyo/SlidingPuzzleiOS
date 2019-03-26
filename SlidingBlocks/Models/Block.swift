@@ -10,10 +10,10 @@ import Foundation
 
 class Block {
     
-    var coordinateX: Int = 0
-    var coordinateY: Int = 0
-    var size: Int = 0
-    var vertical: Bool = false
+    var coordinateX: Int
+    var coordinateY: Int
+    var size: Int
+    var vertical: Bool
     
     init(coordinateX:Int, coordinateY:Int, size:Int, vertical:Bool) {
         

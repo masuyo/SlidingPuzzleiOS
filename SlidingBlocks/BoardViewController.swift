@@ -10,9 +10,10 @@ import UIKit
 
 class BoardViewController: UIViewController {
 
-    var rect: UIView!
-    var blocks = [UIView]()
-    var numberOfBlocks = 4
+    private var rect: UIView!
+    private var blocks = [UIView]()
+    private var numberOfBlocks = 4
+    var board = Board()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class BoardViewController: UIViewController {
         self.generateBlocks()
     }
     
-    func generateBlocks() {
+    private func generateBlocks() {
         for n in 1...numberOfBlocks {
             let block = UIView(frame: CGRect(x: n*50, y: n*50, width: 50, height: 50))
             block.backgroundColor = UIColor.green
