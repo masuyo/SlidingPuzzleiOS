@@ -19,6 +19,10 @@ class ViewController: UIViewController {
 
     }
     
+    @IBAction func openLevel(_ sender: Any) {
+        performSegue(withIdentifier: "LevelSegue", sender: self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
