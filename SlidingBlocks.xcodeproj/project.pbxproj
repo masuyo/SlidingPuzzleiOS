@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7E431551224A8CD300219688 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E431550224A8CD300219688 /* Block.swift */; };
 		7E431553224A8CE300219688 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E431552224A8CE300219688 /* Board.swift */; };
+		7E43155A224AA02900219688 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E431559224AA02900219688 /* BoardViewController.swift */; };
 		7E5B497222493C760065DDAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B497122493C760065DDAC /* AppDelegate.swift */; };
 		7E5B497422493C760065DDAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B497322493C760065DDAC /* ViewController.swift */; };
 		7E5B497722493C760065DDAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E5B497522493C760065DDAC /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		7E431550224A8CD300219688 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		7E431552224A8CE300219688 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		7E431559224AA02900219688 /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		7E5B496E22493C760065DDAC /* SlidingBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlidingBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E5B497122493C760065DDAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E5B497322493C760065DDAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				7E5B497822493C780065DDAC /* Assets.xcassets */,
 				7E5B497A22493C780065DDAC /* LaunchScreen.storyboard */,
 				7E5B497D22493C780065DDAC /* Info.plist */,
+				7E431559224AA02900219688 /* BoardViewController.swift */,
 			);
 			path = SlidingBlocks;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				7E5B497422493C760065DDAC /* ViewController.swift in Sources */,
 				7E431553224A8CE300219688 /* Board.swift in Sources */,
 				7E5B497222493C760065DDAC /* AppDelegate.swift in Sources */,
+				7E43155A224AA02900219688 /* BoardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

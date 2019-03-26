@@ -17,6 +17,8 @@ class Board {
         self.loadMap(level: level)
     }
     
+    init () {}
+    
     func loadMap(level:Int) {
         
     }
