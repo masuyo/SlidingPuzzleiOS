@@ -55,13 +55,13 @@ class ViewController: UIViewController {
     
     private func loadLevels() {
     
-        /*let levelOne = "0 2 2 false,0 1 2 false,1 3 3 false,2 4 2 true,3 4 3 false,4 0 3 true,5 0 3 true"
+        let levelOne = "0 2 2 false,0 1 2 false,1 3 3 false,2 4 2 true,3 4 3 false,4 0 3 true,5 0 3 true"
         let levelTwo = "1 2 2 false,1 4 2 true,2 1 3 false,3 0 2 false,3 3 3 true,4 3 2 false,5 0 3 true"
         let levelThree = "0 2 2 false,1 3 3 false,2 0 3 false,2 1 3 false,2 4 2 true,3 5 2 false,4 2 3 true"
     
         UserDefaults.standard.set(levelOne, forKey: "Level 1")
         UserDefaults.standard.set(levelTwo, forKey: "Level 2")
-        UserDefaults.standard.set(levelThree, forKey: "Level 3")*/
+        UserDefaults.standard.set(levelThree, forKey: "Level 3")
         let string = UserDefaults.standard.object(forKey: "Level 1")
         print(string!)
     }

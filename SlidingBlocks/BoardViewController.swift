@@ -10,39 +10,56 @@ import UIKit
 
 class BoardViewController: UIViewController {
 
-    private var rect: UIView!
     private var blocks = [UIView]()
     private var numberOfBlocks = 4
     var board = Board()
+    private var exitRect: UIView!
+    private let unit = 50
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        rect = UIView(frame: CGRect(x: 30, y: 30, width: 50, height: 50))
-        rect.backgroundColor = UIColor.orange
+//        let touch = UITapGestureRecognizer(target: self, action: #selector (self.tap))
+//        touch.numberOfTapsRequired = 2
+//        rect.addGestureRecognizer(touch)
         
-        self.view.addSubview(rect)
-        
-        let pan = UIPanGestureRecognizer(target: self, action: #selector (self.pan))
-        rect.addGestureRecognizer(pan)
-        
-        let touch = UITapGestureRecognizer(target: self, action: #selector (self.tap))
-        touch.numberOfTapsRequired = 2
-        rect.addGestureRecognizer(touch)
-        
+        self.initExit()
         self.generateBlocks()
     }
     
     private func generateBlocks() {
-        for n in 1...numberOfBlocks {
-            let block = UIView(frame: CGRect(x: n*50, y: n*50, width: 50, height: 50))
-            block.backgroundColor = UIColor.green
-            self.view.addSubview(block)
+//        for n in 1...numberOfBlocks {
+//            let block = UIView(frame: CGRect(x: n*50, y: n*50, width: 50, height: 50))
+//            block.backgroundColor = UIColor.green
+//            self.view.addSubview(block)
+//            let pan = UIPanGestureRecognizer(target: self, action: #selector (self.pan))
+//            block.addGestureRecognizer(pan)
+//            self.blocks.append(block)
+//        }
+        for block in self.board.map {
+            
+            let size = self.unit * block.size
+            let width = block.vertical ? size : self.unit
+            let height = block.vertical ? self.unit : size
+            let rect = UIView(frame: CGRect(
+                x: block.coordinateX*self.unit,
+                y: block.coordinateY*self.unit,
+                width: width,
+                height: height))
+            rect.backgroundColor = UIColor.random()
+            self.view.addSubview(rect)
             let pan = UIPanGestureRecognizer(target: self, action: #selector (self.pan))
-            block.addGestureRecognizer(pan)
-            self.blocks.append(block)
+            rect.addGestureRecognizer(pan)
+            self.blocks.append(rect)
         }
+    }
+    
+    private func initExit() {
+        
+        self.exitRect = UIView(frame: CGRect(x: 100, y: 200, width: 50, height: 50))
+        self.exitRect.backgroundColor = UIColor.red
+        self.view.addSubview(exitRect)
     }
     
     @objc func tap(sender: UITapGestureRecognizer) {
@@ -67,3 +84,6 @@ class BoardViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 }
+
+
+

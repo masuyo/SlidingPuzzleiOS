@@ -40,7 +40,12 @@ class Board {
     
     private func splitIntoBlock(blockString: String) -> Block {
         var blockSplit: [String] = blockString.components(separatedBy: " ")
-        let block: Block = Block(coordinateX: Int(blockSplit[0])!, coordinateY: Int(blockSplit[1])!, size: Int(blockSplit[2])!, vertical: Bool(blockSplit[3])!)
+        let block: Block = Block(
+            coordinateX: Int(blockSplit[0])!,
+            coordinateY: Int(blockSplit[1])!,
+            size: Int(blockSplit[2])!,
+            vertical: Bool(blockSplit[3])!
+        )
         print(blockSplit)
         return block
     }

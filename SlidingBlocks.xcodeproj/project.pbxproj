@@ -17,6 +17,7 @@
 		7E5B497C22493C780065DDAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E5B497A22493C780065DDAC /* LaunchScreen.storyboard */; };
 		7E5B498722493C780065DDAC /* SlidingBlocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B498622493C780065DDAC /* SlidingBlocksTests.swift */; };
 		7E5B499222493C780065DDAC /* SlidingBlocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B499122493C780065DDAC /* SlidingBlocksUITests.swift */; };
+		7E759DC5224C1B5E00CFA9CF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E759DC4224C1B5E00CFA9CF /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		7E5B498D22493C780065DDAC /* SlidingBlocksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlidingBlocksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E5B499122493C780065DDAC /* SlidingBlocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingBlocksUITests.swift; sourceTree = "<group>"; };
 		7E5B499322493C780065DDAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E759DC4224C1B5E00CFA9CF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				7E5B497A22493C780065DDAC /* LaunchScreen.storyboard */,
 				7E5B497D22493C780065DDAC /* Info.plist */,
 				7E431559224AA02900219688 /* BoardViewController.swift */,
+				7E759DC4224C1B5E00CFA9CF /* UIColorExtension.swift */,
 			);
 			path = SlidingBlocks;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				7E431553224A8CE300219688 /* Board.swift in Sources */,
 				7E5B497222493C760065DDAC /* AppDelegate.swift in Sources */,
 				7E43155A224AA02900219688 /* BoardViewController.swift in Sources */,
+				7E759DC5224C1B5E00CFA9CF /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
