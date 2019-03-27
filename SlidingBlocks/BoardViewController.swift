@@ -24,19 +24,12 @@ class BoardViewController: UIViewController {
 //        touch.numberOfTapsRequired = 2
 //        rect.addGestureRecognizer(touch)
         
-        self.initExit()
+        self.generateExit()
         self.generateBlocks()
     }
     
     private func generateBlocks() {
-//        for n in 1...numberOfBlocks {
-//            let block = UIView(frame: CGRect(x: n*50, y: n*50, width: 50, height: 50))
-//            block.backgroundColor = UIColor.green
-//            self.view.addSubview(block)
-//            let pan = UIPanGestureRecognizer(target: self, action: #selector (self.pan))
-//            block.addGestureRecognizer(pan)
-//            self.blocks.append(block)
-//        }
+        
         for block in self.board.map {
             
             let size = self.unit * block.size
@@ -55,7 +48,7 @@ class BoardViewController: UIViewController {
         }
     }
     
-    private func initExit() {
+    private func generateExit() {
         
         self.exitRect = UIView(frame: CGRect(x: 100, y: 200, width: 50, height: 50))
         self.exitRect.backgroundColor = UIColor.red
@@ -71,13 +64,31 @@ class BoardViewController: UIViewController {
         case .began:
             print("begin")
         case .ended:
-            print("end")
+            print("ended")
         case .changed:
-            let point = sender.location(ofTouch: 0, in: self.view)
-            sender.view?.center = point
+            print("changed")
+            if (!self.doesSubViewIntersects(subView: sender.view!)) {
+                let point = sender.location(ofTouch: 0, in: self.view)
+                sender.view?.center = point
+            }
         default:
             print("hello")
         }
+    }
+    
+    private func doesSubViewIntersects(subView: UIView) -> Bool {
+        for view in self.view.subviews {
+            if subView !== view {
+                if subView.frame.intersects(view.frame) {
+                    print(subView === view)
+                    print("im always true : )))")
+                    return true
+                    
+                }
+            }
+        }
+        print("im always false")
+        return false
     }
     
     override func didReceiveMemoryWarning() {
