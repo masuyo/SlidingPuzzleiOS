@@ -14,7 +14,8 @@ class BoardViewController: UIViewController {
     private var numberOfBlocks = 4
     var board = Board()
     private var exitRect: UIView!
-    private let unit = 50
+    private let unit = 60
+    private let padding = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class BoardViewController: UIViewController {
 //        touch.numberOfTapsRequired = 2
 //        rect.addGestureRecognizer(touch)
         
-        self.generateExit()
+        //self.generateExit()
         self.generateBlocks()
     }
     
@@ -32,12 +33,12 @@ class BoardViewController: UIViewController {
         
         for block in self.board.map {
             
-            let size = self.unit * block.size
-            let width = block.vertical ? size : self.unit
-            let height = block.vertical ? self.unit : size
+            let size = self.unit * block.size-padding
+            let height = block.vertical ? size : self.unit-padding
+            let width = block.vertical ? self.unit-padding : size
             let rect = UIView(frame: CGRect(
-                x: block.coordinateX*self.unit,
-                y: block.coordinateY*self.unit,
+                x: block.coordinateX*self.unit+padding,
+                y: block.coordinateY*self.unit+padding,
                 width: width,
                 height: height))
             rect.backgroundColor = UIColor.random()
@@ -67,7 +68,9 @@ class BoardViewController: UIViewController {
             print("ended")
         case .changed:
             print("changed")
-            if (!self.doesSubViewIntersects(subView: sender.view!)) {
+            //let senderView = sender.view?.frame.minX
+            //let tempView = UIView(frame: CGRect()
+            if (!self.subViewIntersects(subView: sender.view!)) {
                 let point = sender.location(ofTouch: 0, in: self.view)
                 sender.view?.center = point
             }
@@ -76,7 +79,7 @@ class BoardViewController: UIViewController {
         }
     }
     
-    private func doesSubViewIntersects(subView: UIView) -> Bool {
+    private func subViewIntersects(subView: UIView) -> Bool {
         for view in self.view.subviews {
             if subView !== view {
                 if subView.frame.intersects(view.frame) {
