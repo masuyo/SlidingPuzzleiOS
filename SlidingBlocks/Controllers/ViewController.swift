@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadLevels()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     @IBAction func openLevel(_ sender: Any) {

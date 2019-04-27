@@ -18,7 +18,6 @@
 		7E5B498722493C780065DDAC /* SlidingBlocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B498622493C780065DDAC /* SlidingBlocksTests.swift */; };
 		7E5B499222493C780065DDAC /* SlidingBlocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B499122493C780065DDAC /* SlidingBlocksUITests.swift */; };
 		7E759DC5224C1B5E00CFA9CF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E759DC4224C1B5E00CFA9CF /* UIColorExtension.swift */; };
-		7EA8546B2274CE3900C139DE /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8546A2274CE3900C139DE /* BoardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +55,6 @@
 		7E5B499122493C780065DDAC /* SlidingBlocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingBlocksUITests.swift; sourceTree = "<group>"; };
 		7E5B499322493C780065DDAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E759DC4224C1B5E00CFA9CF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		7EA8546A2274CE3900C139DE /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +116,6 @@
 			children = (
 				7EA8546D2274CEE200C139DE /* Utils */,
 				7EA8546C2274CEBC00C139DE /* Controllers */,
-				7EA854692274CE0700C139DE /* Views */,
 				7E43154F224A8C8100219688 /* Models */,
 				7E5B497122493C760065DDAC /* AppDelegate.swift */,
 				7E5B497522493C760065DDAC /* Main.storyboard */,
@@ -145,14 +142,6 @@
 				7E5B499322493C780065DDAC /* Info.plist */,
 			);
 			path = SlidingBlocksUITests;
-			sourceTree = "<group>";
-		};
-		7EA854692274CE0700C139DE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7EA8546A2274CE3900C139DE /* BoardView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		7EA8546C2274CEBC00C139DE /* Controllers */ = {
@@ -303,7 +292,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EA8546B2274CE3900C139DE /* BoardView.swift in Sources */,
 				7E431551224A8CD300219688 /* Block.swift in Sources */,
 				7E5B497422493C760065DDAC /* ViewController.swift in Sources */,
 				7E431553224A8CE300219688 /* Board.swift in Sources */,
