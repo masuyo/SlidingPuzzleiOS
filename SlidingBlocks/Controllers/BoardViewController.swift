@@ -86,7 +86,6 @@ class BoardViewController: UIViewController {
             } else {
                 tempView.center = CGPoint(x: tempView.center.x, y: point.y)
             }
-            tempView.center = sender.location(ofTouch: 0, in: self.view)
             if (!self.subViewIntersects(subView: sender.view!, tempView: tempView)) {
                 if (withinBoundaries(tempView: tempView)) {
                     print("I should fking move!")
@@ -109,7 +108,7 @@ class BoardViewController: UIViewController {
                 }
             }
         }
-        print("I don't intersect")
+        print("I don't intersect a view")
         return false
     }
     
