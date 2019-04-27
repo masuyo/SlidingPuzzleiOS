@@ -11,7 +11,6 @@ import UIKit
 class BoardViewController: UIViewController {
 
     private var blocks = [UIView]()
-    private var numberOfBlocks = 4
     var board = Board()
     private var exitRect: UIView!
     private let unit = 60
@@ -19,11 +18,8 @@ class BoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-//        let touch = UITapGestureRecognizer(target: self, action: #selector (self.tap))
-//        touch.numberOfTapsRequired = 2
-//        rect.addGestureRecognizer(touch)
+        // Do any additional setup after loading the view, typically from a nib.
         
         //self.generateExit()
         self.generateBlocks()
@@ -68,9 +64,9 @@ class BoardViewController: UIViewController {
             print("ended")
         case .changed:
             print("changed")
-            //let senderView = sender.view?.frame.minX
-            //let tempView = UIView(frame: CGRect()
-            if (!self.subViewIntersects(subView: sender.view!)) {
+            let view = sender.view!
+            let tempView = UIView(frame: CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.width, height: view.frame.height))
+            if (!self.subViewIntersects(subView: sender.view!, tempView: tempView)) {
                 let point = sender.location(ofTouch: 0, in: self.view)
                 sender.view?.center = point
             }
@@ -79,10 +75,10 @@ class BoardViewController: UIViewController {
         }
     }
     
-    private func subViewIntersects(subView: UIView) -> Bool {
+    private func subViewIntersects(subView: UIView, tempView: UIView) -> Bool {
         for view in self.view.subviews {
-            if subView !== view {
-                if subView.frame.intersects(view.frame) {
+            if !subView.isEqual(view) {
+                if tempView.frame.intersects(view.frame) {
                     print(subView === view)
                     print("im always true : )))")
                     return true
