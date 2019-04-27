@@ -13,18 +13,12 @@ class BoardViewController: UIViewController {
     private var blocks = [UIView]()
     var board = Board()
     private var exit: UIView!
-    private let unit = 60
+    private let unit = (Int)(UIScreen.main.bounds.width / 7)
     private let padding = 3
+    private let topPadding = (Int)(UIScreen.main.bounds.height / 4)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let w = UIScreen.main.bounds.width
-        let h = UIScreen.main.bounds.height
-        let point = CGPoint(x: w / 2, y: h / 2)
-        self.view.frame = CGRect(x: 50, y: 50, width: 500, height: 500)
-        print("szélesség ",point.x)
-        print("magasság ", point.y)
-        self.view.center = point
         
         self.generateExit()
         self.generateBlocks()
@@ -37,11 +31,12 @@ class BoardViewController: UIViewController {
             let size = self.unit * block.size-padding
             let height = block.vertical ? size : self.unit-padding
             let width = block.vertical ? self.unit-padding : size
-            let rect = UIView(frame: CGRect(
-                x: block.coordinateX * self.unit+padding,
-                y: block.coordinateY * self.unit+padding,
-                width: width,
-                height: height
+            let rect = UIView(
+                frame: CGRect(
+                    x: block.coordinateX * self.unit + padding,
+                    y: block.coordinateY * self.unit + padding + topPadding,
+                    width: width,
+                    height: height
             ))
             rect.backgroundColor = UIColor.random()
             self.view.addSubview(rect)
@@ -49,26 +44,20 @@ class BoardViewController: UIViewController {
             rect.addGestureRecognizer(pan)
             self.blocks.append(rect)
         }
-        print("szélesség ", self.view.center.x)
-        print("magasság ", self.view.center.y)
     }
     
     private func generateExit() {
-        let exit = self.board.exit
-        print(exit.coordinateX, exit.coordinateY)
+        let exit = (x: self.board.exit.coordinateX, y: self.board.exit.coordinateY)
+        print(exit.x, exit.y)
         self.exit = UIView(
             frame: CGRect(
-                x: exit.coordinateX * unit + padding,
-                y: exit.coordinateY * unit + padding,
-                width: 50,
-                height: 50
+                x: exit.x * unit + padding,
+                y: exit.y * unit + padding + topPadding,
+                width: unit,
+                height: unit
         ))
         self.exit.backgroundColor = UIColor.red
         self.view.addSubview(self.exit)
-    }
-    
-    @objc func tap(sender: UITapGestureRecognizer) {
-        print("double tap")
     }
     
     @objc func pan(sender: UIPanGestureRecognizer) {
