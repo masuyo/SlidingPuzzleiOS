@@ -12,7 +12,7 @@ class BoardViewController: UIViewController {
 
     private var blocks = [UIView]()
     var board = Board()
-    private var exitRect: UIView!
+    private var exit: UIView!
     private let unit = 60
     private let padding = 3
     
@@ -26,9 +26,7 @@ class BoardViewController: UIViewController {
         print("magasság ", point.y)
         self.view.center = point
         
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        //self.generateExit()
+        self.generateExit()
         self.generateBlocks()
     }
     
@@ -40,8 +38,8 @@ class BoardViewController: UIViewController {
             let height = block.vertical ? size : self.unit-padding
             let width = block.vertical ? self.unit-padding : size
             let rect = UIView(frame: CGRect(
-                x: block.coordinateX*self.unit+padding,
-                y: block.coordinateY*self.unit+padding,
+                x: block.coordinateX * self.unit+padding,
+                y: block.coordinateY * self.unit+padding,
                 width: width,
                 height: height
             ))
@@ -56,10 +54,17 @@ class BoardViewController: UIViewController {
     }
     
     private func generateExit() {
-        
-        self.exitRect = UIView(frame: CGRect(x: 100, y: 200, width: 50, height: 50))
-        self.exitRect.backgroundColor = UIColor.red
-        self.view.addSubview(exitRect)
+        let exit = self.board.exit
+        print(exit.coordinateX, exit.coordinateY)
+        self.exit = UIView(
+            frame: CGRect(
+                x: exit.coordinateX * unit + padding,
+                y: exit.coordinateY * unit + padding,
+                width: 50,
+                height: 50
+        ))
+        self.exit.backgroundColor = UIColor.red
+        self.view.addSubview(self.exit)
     }
     
     @objc func tap(sender: UITapGestureRecognizer) {
@@ -98,13 +103,20 @@ class BoardViewController: UIViewController {
                 if tempView.frame.intersects(view.frame) {
                     print(subView === view)
                     print("im always true : )))")
-                    return true
-                    
+                    return !viewIntersectsExit(subView: subView, view: view)
                 }
             }
         }
         print("im always false")
         return false
+    }
+    
+    private func viewIntersectsExit(subView: UIView, view: UIView) -> Bool {
+        if view === exit {
+            subView.removeFromSuperview()
+            return false
+        }
+        return true
     }
     
     override func didReceiveMemoryWarning() {

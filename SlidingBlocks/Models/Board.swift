@@ -10,10 +10,10 @@ import Foundation
 
 class Board {
     
-    var map = [Block]()
+    private(set) var map = [Block]()
+    private(set) var exit = Block(coordinateX: 6, coordinateY: 2, size: 1, vertical: false)
     
     init(level:Int) {
-        
         self.loadMap(level: level)
     }
     
@@ -33,7 +33,6 @@ class Board {
     }
     
     private func splitIntoBlocks(levelString: String) -> [String] {
-        
         let splitLevelString: [String]  = levelString.components(separatedBy: ",")
         return splitLevelString
     }
