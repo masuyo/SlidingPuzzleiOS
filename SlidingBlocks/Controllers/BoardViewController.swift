@@ -12,7 +12,8 @@ class BoardViewController: UIViewController {
 
     private var blocks = [UIView]()
     var board: Board?
-    private var exit: UIView!
+    private var finisher: UIView?
+    private var exit: UIView?
     private let unit = (Int)(UIScreen.main.bounds.width / 7)
     private let boardUnits = 6
     private let padding = 3
@@ -40,8 +41,8 @@ class BoardViewController: UIViewController {
                     height: height
             ))
             if block === self.board!.map[0] {
-                // finisher block
                 rect.backgroundColor = UIColor.black
+                self.finisher = rect
             } else {
                 rect.backgroundColor = UIColor.random()
             }
@@ -62,34 +63,30 @@ class BoardViewController: UIViewController {
                 width: unit - padding,
                 height: unit - padding
         ))
-        self.exit.backgroundColor = UIColor.red
-        self.view.addSubview(self.exit)
+        self.exit!.backgroundColor = UIColor.red
+        self.view.addSubview(self.exit!)
     }
     
     @objc func pan(sender: UIPanGestureRecognizer) {
         switch sender.state {
-        case .began:
-            print("begin")
-        case .ended:
-            print("ended")
-        case .changed:
-            print("changed")
-            let view = sender.view!
-            let tempView = UIView(
-                frame: CGRect(
-                    x: view.frame.minX,
-                    y: view.frame.minY,
-                    width: view.frame.width,
-                    height: view.frame.height
-            ))
-            let point = sender.location(ofTouch: 0, in: self.view)
-            makeLegalMove(view: tempView, point: point)
-            if (!subViewIntersects(subView: sender.view!, tempView: tempView)) {
-                if (withinBoundaries(view: tempView)) {
-                    print("I should fking move!")
-                    view.center = tempView.center
+            case .changed:
+                print("changed")
+                let view = sender.view!
+                let tempView = UIView(
+                    frame: CGRect(
+                        x: view.frame.minX,
+                        y: view.frame.minY,
+                        width: view.frame.width,
+                        height: view.frame.height
+                ))
+                let point = sender.location(in: self.view)
+                makeLegalMove(view: tempView, point: point)
+                if (!subViewIntersects(subView: sender.view!, tempView: tempView)) {
+                    if (withinBoundaries(view: view, tempView: tempView)) {
+                        print("I should move!")
+                        view.center = tempView.center
+                    }
                 }
-            }
         default:
             print("hello")
         }
@@ -111,18 +108,28 @@ class BoardViewController: UIViewController {
     }
     
     private func viewIntersectsExit(subView: UIView, view: UIView) {
-        if (subView === self.view.subviews[0] && view === exit) {
+        if (subView === self.finisher && view === exit) {
             subView.removeFromSuperview()
         }
     }
     
-    private func withinBoundaries(view: UIView) -> Bool {
+    private func withinBoundaries(view: UIView, tempView: UIView) -> Bool {
         let boundaries = (
             minX: self.padding,
             maxX: boardUnits * (self.unit + self.padding),
             minY: self.topPadding,
             maxY: boardUnits * (self.unit + self.padding) + self.topPadding
         )
+        if (view === self.finisher) {
+            if ((Int)(view.frame.minX) > (boundaries.minX) &&
+                (Int)(view.frame.minY) > (boundaries.minY) &&
+                (Int)(view.frame.maxY) < (boundaries.maxY)) {
+                
+                print("I am a moving finisher")
+                return true
+            }
+            return false
+        }
         if ((Int)(view.frame.minX) > (boundaries.minX) &&
             (Int)(view.frame.maxX) < (boundaries.maxX) &&
             (Int)(view.frame.minY) > (boundaries.minY) &&
@@ -131,6 +138,7 @@ class BoardViewController: UIViewController {
             print("I intersect a boundary")
             return true
         }
+        print("I don't intersect")
         return false
     }
     
