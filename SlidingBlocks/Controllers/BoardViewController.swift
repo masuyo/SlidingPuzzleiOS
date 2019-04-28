@@ -69,24 +69,24 @@ class BoardViewController: UIViewController {
     
     @objc func pan(sender: UIPanGestureRecognizer) {
         switch sender.state {
-            case .changed:
-                print("changed")
-                let view = sender.view!
-                let tempView = UIView(
-                    frame: CGRect(
-                        x: view.frame.minX,
-                        y: view.frame.minY,
-                        width: view.frame.width,
-                        height: view.frame.height
-                ))
-                let point = sender.location(in: self.view)
-                makeLegalMove(view: tempView, point: point)
-                if (!subViewIntersects(subView: sender.view!, tempView: tempView)) {
-                    if (withinBoundaries(view: view, tempView: tempView)) {
-                        print("I should move!")
-                        view.center = tempView.center
-                    }
+        case .changed:
+            print("changed")
+            let view = sender.view!
+            let tempView = UIView(
+                frame: CGRect(
+                    x: view.frame.minX,
+                    y: view.frame.minY,
+                    width: view.frame.width,
+                    height: view.frame.height
+            ))
+            let point = sender.location(ofTouch: 0, in: self.view)
+            makeLegalMove(view: tempView, point: point)
+            if (!subViewIntersects(subView: sender.view!, tempView: tempView)) {
+                if (withinBoundaries(view: view, tempView: tempView)) {
+                    print("I should move!")
+                    view.center = tempView.center
                 }
+            }
         default:
             print("hello")
         }
