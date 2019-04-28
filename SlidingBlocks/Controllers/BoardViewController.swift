@@ -11,9 +11,10 @@ import UIKit
 class BoardViewController: UIViewController {
 
     private var blocks = [UIView]()
-    var board = Board()
+    var board: Board?
     private var exit: UIView!
     private let unit = (Int)(UIScreen.main.bounds.width / 7)
+    private let boardUnits = 6
     private let padding = 3
     private let topPadding = (Int)(UIScreen.main.bounds.height / 4)
     
@@ -26,7 +27,7 @@ class BoardViewController: UIViewController {
     
     private func generateBlocks() {
         
-        for block in self.board.map {
+        for block in self.board!.map {
             
             let size = self.unit * block.size-padding
             let height = block.vertical ? size : self.unit-padding
@@ -38,7 +39,8 @@ class BoardViewController: UIViewController {
                     width: width,
                     height: height
             ))
-            if block === self.board.map[0] {
+            if block === self.board!.map[0] {
+                // finisher block
                 rect.backgroundColor = UIColor.black
             } else {
                 rect.backgroundColor = UIColor.random()
@@ -51,7 +53,7 @@ class BoardViewController: UIViewController {
     }
     
     private func generateExit() {
-        let exit = (x: self.board.exit.coordinateX, y: self.board.exit.coordinateY)
+        let exit = (x: self.board!.exit.coordinateX, y: self.board!.exit.coordinateY)
         print(exit.x, exit.y)
         self.exit = UIView(
             frame: CGRect(
@@ -81,15 +83,11 @@ class BoardViewController: UIViewController {
                     height: view.frame.height
             ))
             let point = sender.location(ofTouch: 0, in: self.view)
-            if ((Int)(tempView.frame.height) < unit) {
-                tempView.center = CGPoint(x: point.x, y: tempView.center.y)
-            } else {
-                tempView.center = CGPoint(x: tempView.center.x, y: point.y)
-            }
-            if (!self.subViewIntersects(subView: sender.view!, tempView: tempView)) {
-                if (withinBoundaries(tempView: tempView)) {
+            makeLegalMove(view: tempView, point: point)
+            if (!subViewIntersects(subView: sender.view!, tempView: tempView)) {
+                if (withinBoundaries(view: tempView)) {
                     print("I should fking move!")
-                    makeLegalMove(view: view, tempView: tempView)
+                    view.center = tempView.center
                 }
             }
         default:
@@ -118,17 +116,17 @@ class BoardViewController: UIViewController {
         }
     }
     
-    private func withinBoundaries(tempView: UIView) -> Bool {
+    private func withinBoundaries(view: UIView) -> Bool {
         let boundaries = (
             minX: self.padding,
-            maxX: 6 * (self.unit + self.padding),
+            maxX: boardUnits * (self.unit + self.padding),
             minY: self.topPadding,
-            maxY: 6 * (self.unit + self.padding) + self.topPadding
+            maxY: boardUnits * (self.unit + self.padding) + self.topPadding
         )
-        if ((Int)(tempView.frame.minX) > (boundaries.minX) &&
-            (Int)(tempView.frame.maxX) < (boundaries.maxX) &&
-            (Int)(tempView.frame.minY) > (boundaries.minY) &&
-            (Int)(tempView.frame.maxY) < (boundaries.maxY)) {
+        if ((Int)(view.frame.minX) > (boundaries.minX) &&
+            (Int)(view.frame.maxX) < (boundaries.maxX) &&
+            (Int)(view.frame.minY) > (boundaries.minY) &&
+            (Int)(view.frame.maxY) < (boundaries.maxY)) {
             
             print("I intersect a boundary")
             return true
@@ -136,20 +134,20 @@ class BoardViewController: UIViewController {
         return false
     }
     
-    private func makeLegalMove(view: UIView, tempView: UIView) {
+    private func makeLegalMove(view: UIView, point: CGPoint) {
         if ((Int)(view.frame.height) < unit) {
-            moveVertically(view: view, tempView: tempView)
+            moveVertically(view: view, point: point)
         } else {
-            moveHorizontally(view: view, tempView: tempView)
+            moveHorizontally(view: view, point: point)
         }
     }
     
-    private func moveVertically(view: UIView, tempView: UIView) {
-        view.center = CGPoint(x: tempView.center.x, y: view.center.y)
+    private func moveVertically(view: UIView, point: CGPoint) {
+        view.center = CGPoint(x: point.x, y: view.center.y)
     }
     
-    private func moveHorizontally(view: UIView, tempView: UIView) {
-        view.center = CGPoint(x: view.center.x, y: tempView.center.y)
+    private func moveHorizontally(view: UIView, point: CGPoint) {
+        view.center = CGPoint(x: view.center.x, y: point.y)
     }
     
     override func didReceiveMemoryWarning() {
