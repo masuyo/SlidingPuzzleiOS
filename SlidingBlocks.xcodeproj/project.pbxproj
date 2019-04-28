@@ -12,7 +12,7 @@
 		7E43155A224AA02900219688 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E431559224AA02900219688 /* BoardViewController.swift */; };
 		7E5B497222493C760065DDAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B497122493C760065DDAC /* AppDelegate.swift */; };
 		7E5B497422493C760065DDAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B497322493C760065DDAC /* ViewController.swift */; };
-		7E5B497722493C760065DDAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E5B497522493C760065DDAC /* Main.storyboard */; };
+		7E5B497722493C760065DDAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E5B497522493C760065DDAC /* Main.storyboard */; settings = {ASSET_TAGS = (level, ); }; };
 		7E5B497922493C780065DDAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E5B497822493C780065DDAC /* Assets.xcassets */; };
 		7E5B497C22493C780065DDAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E5B497A22493C780065DDAC /* LaunchScreen.storyboard */; };
 		7E5B498722493C780065DDAC /* SlidingBlocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B498622493C780065DDAC /* SlidingBlocksTests.swift */; };
@@ -223,6 +223,9 @@
 		7E5B496622493C760065DDAC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					level,
+				);
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = aimiliona;

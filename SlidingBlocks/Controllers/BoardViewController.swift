@@ -16,7 +16,7 @@ class BoardViewController: UIViewController {
     private var exit: UIView?
     private let unit = (Int)(UIScreen.main.bounds.width / 7)
     private let boardUnits = 6
-    private let padding = 5
+    private let padding = 6
     private let topPadding = (Int)(UIScreen.main.bounds.height / 4)
     
     override func viewDidLoad() {
@@ -121,18 +121,8 @@ class BoardViewController: UIViewController {
             minY: self.topPadding,
             maxY: boardUnits * (self.unit + self.padding) + self.topPadding
         )
-        if (view === self.finisher) {
-            if ((Int)(tempView.frame.minX) <= (boundaries.minX) && tempView.center.x < view.center.x ||
-                (Int)(tempView.frame.minY) <= (boundaries.minY) && tempView.center.y < view.center.y ||
-                (Int)(tempView.frame.maxY) >= (boundaries.maxY) && tempView.center.y > view.center.y) {
-                
-                print("I am a moving finisher")
-                return false
-            }
-            return true
-        }
         if ((Int)(tempView.frame.minX) <= (boundaries.minX) && tempView.center.x < view.center.x ||
-            (Int)(tempView.frame.maxX) >= (boundaries.maxX) && tempView.center.x > view.center.x ||
+            (Int)(tempView.frame.maxX) >= (boundaries.maxX) && tempView.center.x > view.center.x && view !== self.finisher ||
             (Int)(tempView.frame.minY) <= (boundaries.minY) && tempView.center.y < view.center.y ||
             (Int)(tempView.frame.maxY) >= (boundaries.maxY) && tempView.center.y > view.center.y) {
             
