@@ -16,7 +16,7 @@ class BoardViewController: UIViewController {
     private var exit: UIView?
     private let unit = (Int)(UIScreen.main.bounds.width / 7)
     private let boardUnits = 6
-    private let padding = 6
+    private let padding = 8
     private let topPadding = (Int)(UIScreen.main.bounds.height / 4)
     
     override func viewDidLoad() {
@@ -83,7 +83,6 @@ class BoardViewController: UIViewController {
             makeLegalMove(view: tempView, point: point)
             if (!subViewIntersects(subView: sender.view!, tempView: tempView)) {
                 if (withinBoundaries(view: view, tempView: tempView)) {
-                    print("I should move!")
                     view.center = tempView.center
                 }
             }
@@ -97,13 +96,11 @@ class BoardViewController: UIViewController {
             if !subView.isEqual(view) {
                 if tempView.frame.intersects(view.frame) {
                     print(subView === view)
-                    print("I intersect another block")
                     viewIntersectsExit(subView: subView, view: view)
                     return true
                 }
             }
         }
-        print("I don't intersect a view")
         return false
     }
     
@@ -126,10 +123,8 @@ class BoardViewController: UIViewController {
             (Int)(tempView.frame.minY) <= (boundaries.minY) && tempView.center.y < view.center.y ||
             (Int)(tempView.frame.maxY) >= (boundaries.maxY) && tempView.center.y > view.center.y) {
             
-            print("I intersect a boundary")
             return false
         }
-        print("I dont intersect a boundary")
         return true
     }
     
